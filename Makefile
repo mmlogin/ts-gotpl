@@ -10,6 +10,13 @@ test:
 	./test.sh
 
 dist:
+	echo "TRAVIS_TAG: ${TRAVIS_TAG}"
+	echo "VERSION: ${VERSION}"
+	echo "TRAVIS_HOME: ${TRAVIS_HOME}"
+	echo "TRAVIS_TMPDIR: ${TRAVIS_TMPDIR}"
+	echo "GIMME_OUTPUT: ${GIMME_OUTPUT}"
+	echo "TRAVIS_BUILD_DIR: ${TRAVIS_BUILD_DIR}"
+
 	rm -rf dist
 	rm -f docker-gen-alpine-linux-*.tar.gz
 	rm -f docker-gen-linux-*.tar.gz
