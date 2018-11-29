@@ -1,6 +1,9 @@
 language: go
 go:
 - "1.10"
+branches:
+  only:
+  - master
 install:
 - make
 script:
