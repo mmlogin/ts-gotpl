@@ -5,9 +5,9 @@ install:
 - make
 script:
 - make test
-- echo "before export: TRAVIS_TAG=$TRAVIS_TAG"
+- echo $TRAVIS_TAG
 - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
-- echo "after  export: TRAVIS_TAG=$TRAVIS_TAG"
+- echo $TRAVIS_TAG
 - make VERSION="${TRAVIS_TAG:-latest}" dist
 before_deploy:
 - git config --local user.name "mtilson"
