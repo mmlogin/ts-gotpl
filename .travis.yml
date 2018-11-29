@@ -8,8 +8,8 @@ install:
 - make
 script:
 - make test
-- make VERSION="${TRAVIS_TAG:-latest}" dist
 before_deploy:
+- make VERSION="${TRAVIS_TAG:-latest}" dist
 - git config --local user.name "mtilson"
 - git config --local user.email "m@tilson.biz"
 deploy:
