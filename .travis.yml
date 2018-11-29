@@ -8,14 +8,10 @@ install:
 - make
 script:
 - make test
-- echo $TRAVIS_TAG
-- export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
-- echo $TRAVIS_TAG
 - make VERSION="${TRAVIS_TAG:-latest}" dist
 before_deploy:
 - git config --local user.name "mtilson"
 - git config --local user.email "m@tilson.biz"
-- git tag $TRAVIS_TAG
 deploy:
   provider: releases
   api_key:
