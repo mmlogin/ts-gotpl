@@ -1,39 +1,34 @@
 language: go
-
 go:
-  - 1.9
-
+- 1.9
 install:
-  - make
-
+- make
 script:
-  - make test
-  - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
-  - make VERSION="${TRAVIS_TAG:-latest}" dist
-
+- make test
+- export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
+- make VERSION="${TRAVIS_TAG:-latest}" dist
 before_deploy:
-# Set up git user name and tag this commit
-  - git config --local user.name "mtilson"
-  - git config --local user.email "m@tilson.biz"
-  - git tag $TRAVIS_TAG
-
+- git config --local user.name "mtilson"
+- git config --local user.email "m@tilson.biz"
+- git tag $TRAVIS_TAG
 deploy:
   provider: releases
-  api_key: $GITHUB_ACCESS_TOKEN
+  api_key:
+    secure: p9UNmsiul9QvxiIHvv5sJbGesySdVADiVGFKPHVsQGPoYBMPbLAk2T4wQuZry3QHAhgV5C9vmXBjHHEFLo9qR0m8lfDLrj4yIsejqxs3uLEqFZdBr/hzzy8ouiwJ9ylw0e5e2+kEqsDV0b0vJER+P0VWmoVxPa+NhvmS54ilhgJNmLpUNFOVAw0vzwxhW4XPMtwVOBGf/ArMHqr6a75n2+KiPqbJhQV7nbjVmwDnotnN57igfHOKXg52UAfx0yYU3DH7qV4oe2DlsY2jQaq39SEByqqEGPl1FZhpcQ2Pno1NelFA9YC72FKi+8qcUyP8q0/rne5MHlUzIiPTlzRFoghFp87y2djHX6Hbdy1Z3ihRncXlWwXHtPiLverpgnqJOHRcOCsBXgtkkURh8MedLA2cvBb60+Je1c/Vgkcib+XvkoP/ScEJrXDWmQITT+2ZedJx3s9Teu5XzIejbmNtqa+IFQa+/QXTaKP/v06voDXjc+8l30UGnIre8j/80kFnf3T+7r0ZpBS59y3Jss7+6wOIu7CTU7on4Qki+YhWevgutXobFEp/ZVofreQ3798afflax5kwJN7ioZIwawhXgf4/Th9Fg2GKEUOH5IWEmjVJTfwByYwMwASy5dlyxPPAzmIwMiHUIddS5WscWie0930C8/4hae2/XnI/RQ9AuBI=
   overwrite: true
   skip_cleanup: true
   file_glob: true
   file:
-    - ts-gotpl-alpine-linux-amd64-*.tar.gz
-    - ts-gotpl-linux-amd64-*.tar.gz
-    - ts-gotpl-linux-i386-*.tar.gz
-    - ts-gotpl-linux-armel-*.tar.gz
-    - ts-gotpl-linux-armhf-*.tar.gz
-    - ts-gotpl-darwin-amd64-*.tar.gz
-    - ts-gotpl-darwin-i386-*.tar.gz
+  - ts-gotpl-alpine-linux-amd64-*.tar.gz
+  - ts-gotpl-linux-amd64-*.tar.gz
+  - ts-gotpl-linux-i386-*.tar.gz
+  - ts-gotpl-linux-armel-*.tar.gz
+  - ts-gotpl-linux-armhf-*.tar.gz
+  - ts-gotpl-darwin-amd64-*.tar.gz
+  - ts-gotpl-darwin-i386-*.tar.gz
   on:
+    repo: mtilson/ts-gotpl
     tags: true
-
 notifications:
   email:
     on_success: never
